@@ -1,14 +1,14 @@
-# Project TrailVision
+# TrailVision
 
 TrailVision is a mountain bike video analytics platform that converts GoPro footage into ride metrics, highlight moments, extracted frames, and dashboard-ready data.
 
 ## Problem
 
-Mountain bike videos are hard to review manually. A short ride can create thousands of frames, and finding the best moments takes time.
+Manual review of mountain bike video is slow. A short ride can create thousands of frames, making it hard to find the best moments.
 
 ## Solution
 
-TrailVision uses Python, FFmpeg, OpenCV, DuckDB, and future dbt/Power BI models to automate ride analysis.
+TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and planned dbt/Power BI reporting.
 
 ## Current Features
 
@@ -26,9 +26,9 @@ TrailVision uses Python, FFmpeg, OpenCV, DuckDB, and future dbt/Power BI models 
 - OpenCV
 - FFmpeg
 - DuckDB
-- dbt planned
-- Power BI planned
-- Tkinter planned
+- dbt (planned)
+- Power BI (planned)
+- Tkinter (planned)
 
 ## Project Structure
 
@@ -46,9 +46,11 @@ MTB_Video_Analytics
 ├── services
 ├── tests
 └── vision
+```
 
-##Pipeline
+## Pipeline
 
+```text
 Raw GoPro Video
       ↓
 FFmpeg Conversion
@@ -64,12 +66,13 @@ DuckDB
 dbt
       ↓
 Power BI
+```
 
+## Architecture
 
-## 2. `docs/system_architecture_diagram.md`
+The project is structured with a desktop app layer, a services layer, vision and model layers, and a data layer.
 
-```markdown
-# TrailVision System Architecture Diagram
+### System architecture diagram
 
 ```text
                          Project TrailVision
@@ -103,7 +106,7 @@ Power BI
 │                                                              │
 │   DuckDB                                                     │
 │   database/trailvision.duckdb                                │
-└───────────────────────────────┬──────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌──────────────────────────────────────────────────────────────┐
@@ -112,7 +115,5 @@ Power BI
 │   dbt models - planned                                       │
 │   Power BI dashboard - planned                               │
 └──────────────────────────────────────────────────────────────┘
-
-
-
+```
 
