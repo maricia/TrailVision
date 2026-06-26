@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environments
+.venv/
+venv/
+
+# VS Code
+.vscode/settings.json
+
+# Database
+database/*.wal
+database/*.tmp
+
+# Output
+output/
+frames/
+converted/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Private/local media
+raw_videos/
+videos/
+converted/
+frames/
+output/
+
+# Database files
+database/*.duckdb
+database/*.wal
+database/*.tmp
+
+# Personal/local files
+*.mp4
+*.MP4
+*.jpg
+*.jpeg
+*.png
+*.csv
