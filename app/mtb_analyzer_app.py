@@ -59,11 +59,11 @@ def run_analysis():
     if not selected_video.get():
         messagebox.showwarning("No video", "Select a video first.")
         return
-    # Start background analysis to keep the UI responsive and show progress/ETA
-    status.set("Analyzing ride...")
-    root.update_idletasks()
 
+    status.set("Preparing analysis...")
+    root.update_idletasks()
     progress_bar['value'] = 0
+    progress_bar.config(mode='determinate')
 
     def on_progress(processed, total):
         percent = int((processed / total) * 100) if total else 0
@@ -104,13 +104,18 @@ def run_analysis():
             progress_bar.stop()
             progress_bar.config(mode='determinate')
             progress_bar['value'] = 0
+            status.set("Analyzing video...")
 
-            # analysis_service will call our callback periodically
             metrics = analysis_service.analyze_optical_flow(
                 video, progress_callback=lambda p, t: root.after(0, on_progress, p, t)
             )
 
+            status.set("Extracting highlight frames...")
+            progress_bar.config(mode='indeterminate')
+            progress_bar.start(10)
             frames = analysis_service.extract_highlight_frames(video, metrics, top_n=10)
+            progress_bar.stop()
+            progress_bar.config(mode='determinate')
 
             csv_path = OUTPUT / "ride_analysis.csv"
             root.after(0, on_done, csv_path, len(frames))
