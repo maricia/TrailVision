@@ -1,7 +1,3 @@
-
-## 5. `docs/data_flow_diagram.md`
-
-```markdown
 # TrailVision Data Flow Diagram
 
 ```text
