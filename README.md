@@ -78,7 +78,7 @@ The project is structured with a desktop app layer, a services layer, vision and
                          Project TrailVision
 ┌──────────────────────────────────────────────────────────────┐
 │                         Desktop App                          │
-│                    app/main.py - future GUI                   │
+│                    app/main.py - future GUI                  │
 └───────────────────────────────┬──────────────────────────────┘
                                 │
                                 ▼
@@ -93,7 +93,7 @@ The project is structured with a desktop app layer, a services layer, vision and
                 │                      │
                 ▼                      ▼
 ┌──────────────────────────┐   ┌───────────────────────────────┐
-│       Vision Layer       │   │          Models Layer          │
+│       Vision Layer       │   │          Models Layer         │
 │                          │   │                               │
 │   motion.py              │   │   Ride                        │
 │   optical_flow.py        │   │   Video                       │
