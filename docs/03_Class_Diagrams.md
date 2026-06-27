@@ -1,7 +1,7 @@
 ## 3. `docs/class_diagram.md`
 
-```markdown
-# TrailVision Class Diagram
+
+## TrailVision Class Diagram
 
 ```text
 ┌──────────────────────────────┐
