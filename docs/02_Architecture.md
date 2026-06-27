@@ -1,9 +1,9 @@
 
 ## 2. `docs/system_architecture_diagram.md`
 
-```markdown
-# TrailVision System Architecture Diagram
 
+# TrailVision System Architecture Diagram
+```markdown
 
                          Project TrailVision
 ┌──────────────────────────────────────────────────────────────┐
