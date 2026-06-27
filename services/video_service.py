@@ -71,6 +71,24 @@ class VideoService:
         video.converted_path = converted_path
         return video
 
+    def ensure_converted(self, video: Video, overwrite: bool = False) -> Video:
+        converted_path = self.get_converted_path(video)
+
+        if video.converted_path is not None and video.converted_path.exists():
+            return video
+
+        if converted_path.exists() and not overwrite:
+            video.converted_path = converted_path
+            return video
+
+        if not video.original_path.exists():
+            raise FileNotFoundError(f"Original video file does not exist: {video.original_path}")
+
+        if video.duration_seconds is None or video.fps is None or video.frame_count is None:
+            video = self.read_metadata(video)
+
+        return self.convert_to_mp4(video, overwrite=overwrite)
+
     def prepare_video(self, video_path: Path, overwrite: bool = False) -> Video:
         video = Video(original_path=video_path)
 

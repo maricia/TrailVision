@@ -5,6 +5,9 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from pathlib import Path
 
+from services.video_service import VideoService
+from services.analysis_service import AnalysisService
+
 BASE = Path(r"I:\MTB_Video_Analytics")
 OUTPUT = BASE / "output"
 FRAMES = BASE / "frames"
@@ -12,85 +15,18 @@ FRAMES = BASE / "frames"
 OUTPUT.mkdir(exist_ok=True)
 FRAMES.mkdir(exist_ok=True)
 
+video_service = VideoService()
+analysis_service = AnalysisService()
+
 
 def analyze_video(video_path):
-    cap = cv2.VideoCapture(str(video_path))
-
-    if not cap.isOpened():
-        raise RuntimeError("Could not open video.")
-
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    sample_every_frames = max(1, int(fps))
-
-    previous_gray = None
-    rows = []
-    frame_number = 0
-
-    while True:
-        success, frame = cap.read()
-        if not success:
-            break
-
-        if frame_number % sample_every_frames == 0:
-            small = cv2.resize(frame, (320, 180))
-            gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
-
-            if previous_gray is not None:
-                flow = cv2.calcOpticalFlowFarneback(
-                    previous_gray, gray, None,
-                    0.5, 3, 15, 3, 5, 1.2, 0
-                )
-
-                dx = flow[..., 0]
-                dy = flow[..., 1]
-                magnitude, _ = cv2.cartToPolar(dx, dy)
-
-                seconds = frame_number / fps
-                avg_motion = float(np.mean(magnitude))
-                max_motion = float(np.max(magnitude))
-                horizontal_motion = float(np.mean(dx))
-                vertical_motion = float(np.mean(dy))
-
-                highlight_score = avg_motion * 10 + max_motion
-
-                rows.append({
-                    "video": video_path.name,
-                    "timestamp_seconds": round(seconds, 2),
-                    "timestamp": f"{int(seconds // 60):02d}:{int(seconds % 60):02d}",
-                    "avg_motion": round(avg_motion, 3),
-                    "max_motion": round(max_motion, 3),
-                    "horizontal_motion": round(horizontal_motion, 3),
-                    "vertical_motion": round(vertical_motion, 3),
-                    "highlight_score": round(highlight_score, 3)
-                })
-
-            previous_gray = gray
-
-        frame_number += 1
-
-    cap.release()
-
-    df = pd.DataFrame(rows)
+    video = video_service.prepare_video(video_path)
+    metrics = analysis_service.analyze_optical_flow(video)
+    frames = analysis_service.extract_highlight_frames(video, metrics, top_n=10)
 
     csv_path = OUTPUT / "ride_analysis.csv"
-    df.to_csv(csv_path, index=False)
-
-    top = df.sort_values("highlight_score", ascending=False).head(10)
-
-    cap = cv2.VideoCapture(str(video_path))
-
-    for _, row in top.iterrows():
-        cap.set(cv2.CAP_PROP_POS_MSEC, row["timestamp_seconds"] * 1000)
-        success, frame = cap.read()
-
-        if success:
-            safe_time = row["timestamp"].replace(":", "_")
-            frame_path = FRAMES / f"{video_path.stem}_{safe_time}_score_{row['highlight_score']}.jpg"
-            cv2.imwrite(str(frame_path), frame)
-
-    cap.release()
-
-    return csv_path, len(top)
+    # Keep the UI contract of returning CSV path and frame count.
+    return csv_path, len(frames)
 
 
 def select_video():
@@ -124,7 +60,11 @@ def run_analysis():
 
     except Exception as e:
         status.set("Error.")
-        messagebox.showerror("Error", str(e))
+        import traceback
+        tb = traceback.format_exc()
+        print(tb)
+        # show both the exception message and the full traceback to help debugging
+        messagebox.showerror("Error", f"{e}\n\nSee console for full traceback:\n\n{tb}")
 
 
 root = tk.Tk()

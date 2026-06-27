@@ -5,14 +5,17 @@ import pandas as pd
 
 from config import OUTPUT_DIR, FRAME_DIR
 from models.video import Video
+from services.video_service import VideoService
 
 
 class AnalysisService:
     def __init__(self):
         OUTPUT_DIR.mkdir(exist_ok=True)
         FRAME_DIR.mkdir(exist_ok=True)
+        self.video_service = VideoService()
 
     def analyze_optical_flow(self, video: Video, sample_every_seconds: int = 1) -> list[dict]:
+        video = self.video_service.ensure_converted(video)
         video_path = video.converted_path or video.original_path
 
         cap = cv2.VideoCapture(str(video_path))
@@ -96,6 +99,7 @@ class AnalysisService:
         return rows
 
     def extract_highlight_frames(self, video: Video, metrics: list[dict], top_n: int = 10) -> list[dict]:
+        video = self.video_service.ensure_converted(video)
         video_path = video.converted_path or video.original_path
 
         if not metrics:
