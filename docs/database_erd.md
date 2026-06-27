@@ -1,7 +1,3 @@
-
-## 4. `docs/database_erd.md`
-
-```markdown
 # TrailVision Database ERD
 
 ```text
