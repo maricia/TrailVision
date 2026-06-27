@@ -139,4 +139,7 @@ tk.Button(root, text="Analyze Ride", command=run_analysis, width=25).pack(pady=1
 
 tk.Label(root, textvariable=status).pack(pady=15)
 
+progress_bar = ttk.Progressbar(root, orient='horizontal', length=500, mode='determinate')
+progress_bar.pack(pady=5)
+
 root.mainloop()
