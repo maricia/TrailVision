@@ -2,6 +2,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 import pandas as pd
+from typing import Callable, Optional
 
 from config import OUTPUT_DIR, FRAME_DIR
 from models.video import Video
@@ -14,7 +15,16 @@ class AnalysisService:
         FRAME_DIR.mkdir(exist_ok=True)
         self.video_service = VideoService()
 
-    def analyze_optical_flow(self, video: Video, sample_every_seconds: int = 1) -> list[dict]:
+    def analyze_optical_flow(
+        self,
+        video: Video,
+        sample_every_seconds: int = 1,
+        progress_callback: Optional[Callable[[int, int], None]] = None,
+    ) -> list[dict]:
+        """Analyze optical flow.
+
+        progress_callback, if provided, will be called as progress_callback(processed_frames, total_frames).
+        """
         video = self.video_service.ensure_converted(video)
         video_path = video.converted_path or video.original_path
 
@@ -25,6 +35,7 @@ class AnalysisService:
 
         fps = cap.get(cv2.CAP_PROP_FPS)
         sample_every_frames = max(1, int(fps * sample_every_seconds))
+        total_frames = int(video.frame_count or cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
 
         previous_gray = None
         rows = []
@@ -91,10 +102,25 @@ class AnalysisService:
 
             frame_number += 1
 
+            # Report progress periodically (every sampled frame)
+            if progress_callback and (frame_number % sample_every_frames == 0 or frame_number % 100 == 0):
+                try:
+                    progress_callback(frame_number, total_frames)
+                except Exception:
+                    # Progress callbacks should not interrupt analysis
+                    pass
+
         cap.release()
 
         csv_path = OUTPUT_DIR / "analysis_metrics.csv"
         pd.DataFrame(rows).to_csv(csv_path, index=False)
+
+        # final progress notification
+        if progress_callback:
+            try:
+                progress_callback(total_frames, total_frames)
+            except Exception:
+                pass
 
         return rows
 
