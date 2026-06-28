@@ -6,7 +6,7 @@
 
 TrailVision is a computer vision and video analytics platform that transforms GoPro mountain bike footage into ride metrics, highlight moments, extracted frames, and dashboard-ready analytics. The project demonstrates an end-to-end data pipeline using OpenCV, DuckDB, and modern analytics tools to automate ride analysis and generate visual insights.
 
-![TrailVision Hero](/images/trailvision_hero.png)
+![TrailVision Hero](images/trailvision.png)
 
 ## Problem
 
@@ -15,11 +15,6 @@ Manual review of mountain bike video is slow. A short ride can create thousands 
 ## Solution
 
 TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and planned dbt/Power BI reporting.
-
-![Terrain Classification Distribution](charts/03_terrain_distribution.png)
-![highlight_by_directionalt text](charts/05_highlight_by_direction.png)
-![motion_vs_highlightalt text](charts/06_motion_vs_highlight.png)
-![top_highlight_moments](charts/07_top_highlight_moments.png)
 
 ## Pipeline
 
@@ -42,11 +37,6 @@ Power BI
 ```
 
 ## Tech Stack
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
-![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-orange)
-![Status](https://img.shields.io/badge/status-active-success)
-
 - Python
 - OpenCV
 - FFmpeg
@@ -65,22 +55,32 @@ Power BI
 - Store project data in DuckDB
 - Use object-oriented models for rides and videos
 
+## Example Analytics
+
+![Terrain Classification Distribution](charts/03_terrain_distribution.png)
+
+![Average Highlight Score by Direction](charts/05_highlight_by_direction.png)
+
+![Motion vs Highlight Score](charts/06_motion_vs_highlight.png)
+
+![Top Highlight Moments](charts/07_top_highlight_moments.png)
+
 ## Installation
+
+### Prerequisites
+
+- Python 3.12+
+- FFmpeg installed and available on your PATH
 
 ```bash
 git clone https://github.com/maricia/TrailVision.git
 cd TrailVision
-
-Requires Python 3.12+
-Requires FFmpeg
 
 python -m venv .venv
 .venv\Scripts\activate
 
 pip install -r requirements.txt
 python app/main.py
-
-
 ```
 
 ## Project Structure
