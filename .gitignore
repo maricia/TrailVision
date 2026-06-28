@@ -42,7 +42,6 @@ database/*.tmp
 *.MP4
 *.jpg
 *.jpeg
-*.png
 *.csv
 
 # Motion metric charts
