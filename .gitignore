@@ -46,4 +46,4 @@ database/*.tmp
 *.csv
 
 # Motion metric charts
-charts\motion_metric_charts.zip
+charts/motion_metric_charts.zip
