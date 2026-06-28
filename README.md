@@ -19,15 +19,25 @@ TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and pl
 ![motion_vs_highlightalt text](charts/06_motion_vs_highlight.png)
 ![top_highlight_moments](charts/07_top_highlight_moments.png)
 
-## Current Features
+## Pipeline
 
-- Convert GoPro video to analysis-ready MP4
-- Read video metadata
-- Calculate motion metrics
-- Run optical flow analysis
-- Extract highlight frames
-- Store project data in DuckDB
-- Use object-oriented models for rides and videos
+```text
+Raw GoPro Video
+      ↓
+FFmpeg Conversion
+      ↓
+OpenCV Analysis
+      ↓
+Motion + Optical Flow Metrics
+      ↓
+Highlight Extraction
+      ↓
+DuckDB
+      ↓
+dbt
+      ↓
+Power BI
+```
 
 ## Tech Stack
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
@@ -42,6 +52,16 @@ TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and pl
 - dbt (planned)
 - Power BI (planned)
 - Tkinter (planned)
+
+## Current Features
+
+- Convert GoPro video to analysis-ready MP4
+- Read video metadata
+- Calculate motion metrics
+- Run optical flow analysis
+- Extract highlight frames
+- Store project data in DuckDB
+- Use object-oriented models for rides and videos
 
 ## Project Structure
 
@@ -62,25 +82,7 @@ MTB_Video_Analytics
 └── vision
 ```
 
-## Pipeline
 
-```text
-Raw GoPro Video
-      ↓
-FFmpeg Conversion
-      ↓
-OpenCV Analysis
-      ↓
-Motion + Optical Flow Metrics
-      ↓
-Highlight Extraction
-      ↓
-DuckDB
-      ↓
-dbt
-      ↓
-Power BI
-```
 
 ## Architecture
 
