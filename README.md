@@ -10,7 +10,7 @@ Manual review of mountain bike video is slow. A short ride can create thousands 
 
 TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and planned dbt/Power BI reporting.
 
-![Terrain Classificattion Distribution](charts\03_terrain_distribution.png)
+![Terrain Classification Distribution](charts\03_terrain_distribution.png)
 ![highlight_by_directionalt text](charts\05_highlight_by_direction.png)
 ![motion_vs_highlightalt text](charts\06_motion_vs_highlight.png)
 ![top_highlight_moments](charts\07_top_highlight_moments.png)
@@ -40,6 +40,7 @@ TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and pl
 ```text
 MTB_Video_Analytics
 ├── app
+├── charts
 ├── converted
 ├── database
 ├── docs
