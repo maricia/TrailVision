@@ -63,6 +63,19 @@ Power BI
 - Store project data in DuckDB
 - Use object-oriented models for rides and videos
 
+## Installation
+
+```bash
+git clone https://github.com/maricia/TrailVision.git
+cd TrailVision
+
+python -m venv .venv
+.venv\Scripts\activate
+
+pip install -r requirements.txt
+python app/main.py
+```
+
 ## Project Structure
 
 ```text
