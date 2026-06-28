@@ -69,11 +69,16 @@ Power BI
 git clone https://github.com/maricia/TrailVision.git
 cd TrailVision
 
+Requires Python 3.12+
+Requires FFmpeg
+
 python -m venv .venv
 .venv\Scripts\activate
 
 pip install -r requirements.txt
 python app/main.py
+
+
 ```
 
 ## Project Structure
@@ -167,14 +172,5 @@ The project is structured with a desktop app layer, a services layer, vision and
 
 ⬜ Auto Reel Generator
 
-# Installation
-
-git clone https://github.com/maricia/TrailVision.git
-
-cd TrailVision
-
-python -m venv .venv
-
-pip install -r requirements.txt
 
 python app/main.py
