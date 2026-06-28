@@ -1,4 +1,8 @@
 # TrailVision
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
+![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-orange)
+![Status](https://img.shields.io/badge/status-active-success)
 
 TrailVision is a mountain bike video analytics platform that converts GoPro footage into ride metrics, highlight moments, extracted frames, and dashboard-ready data.
 TrailVision automatically analyzes mountain bike ride videos to identify highlights, estimate ride quality metrics, and generate visual summaries. It demonstrates a complete computer vision pipeline from video ingestion through analytics and reporting.
@@ -27,6 +31,10 @@ TrailVision automates ride analysis using Python, FFmpeg, OpenCV, DuckDB, and pl
 - Use object-oriented models for rides and videos
 
 ## Tech Stack
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
+![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-orange)
+![Status](https://img.shields.io/badge/status-active-success)
 
 - Python
 - OpenCV
@@ -144,3 +152,15 @@ The project is structured with a desktop app layer, a services layer, vision and
 ⬜ Strava Import
 
 ⬜ Auto Reel Generator
+
+# Installation
+
+git clone https://github.com/maricia/TrailVision.git
+
+cd TrailVision
+
+python -m venv .venv
+
+pip install -r requirements.txt
+
+python app/main.py
