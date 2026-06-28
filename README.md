@@ -123,4 +123,24 @@ The project is structured with a desktop app layer, a services layer, vision and
 │   Power BI dashboard - planned                               │
 └──────────────────────────────────────────────────────────────┘
 ```
+# Roadmap
 
+✔ Ride Database
+
+✔ Video Import
+
+✔ Optical Flow
+
+✔ Analysis Engine
+
+⬜ Trail Detection
+
+⬜ Jump Detection
+
+⬜ AI Highlights
+
+⬜ GPS Overlay
+
+⬜ Strava Import
+
+⬜ Auto Reel Generator
