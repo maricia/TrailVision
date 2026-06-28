@@ -55,6 +55,16 @@ Power BI
 - Store project data in DuckDB
 - Use object-oriented models for rides and videos
 
+## Example Analytics
+
+![Terrain Classification Distribution](charts/03_terrain_distribution.png)
+
+![Average Highlight Score by Direction](charts/05_highlight_by_direction.png)
+
+![Motion vs Highlight Score](charts/06_motion_vs_highlight.png)
+
+![Top Highlight Moments](charts/07_top_highlight_moments.png)
+
 ## Installation
 
 ### Prerequisites
