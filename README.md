@@ -4,8 +4,7 @@
 ![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-orange)
 ![Status](https://img.shields.io/badge/status-active-success)
 
-TrailVision is a mountain bike video analytics platform that converts GoPro footage into ride metrics, highlight moments, extracted frames, and dashboard-ready data.
-TrailVision automatically analyzes mountain bike ride videos to identify highlights, estimate ride quality metrics, and generate visual summaries. It demonstrates a complete computer vision pipeline from video ingestion through analytics and reporting.
+TrailVision is a computer vision and video analytics platform that transforms GoPro mountain bike footage into ride metrics, highlight moments, extracted frames, and dashboard-ready analytics. The project demonstrates an end-to-end data pipeline using OpenCV, DuckDB, and modern analytics tools to automate ride analysis and generate visual insights.
 
 ## Problem
 
