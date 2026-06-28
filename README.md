@@ -6,6 +6,8 @@
 
 TrailVision is a computer vision and video analytics platform that transforms GoPro mountain bike footage into ride metrics, highlight moments, extracted frames, and dashboard-ready analytics. The project demonstrates an end-to-end data pipeline using OpenCV, DuckDB, and modern analytics tools to automate ride analysis and generate visual insights.
 
+![TrailVision Hero](/images/trailvision_hero.png)
+
 ## Problem
 
 Manual review of mountain bike video is slow. A short ride can create thousands of frames, making it hard to find the best moments.
